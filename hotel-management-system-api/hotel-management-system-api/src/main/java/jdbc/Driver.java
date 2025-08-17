@@ -1,4 +1,4 @@
-package com.mysql.cj.jdbc;
+package jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverPropertyInfo;
