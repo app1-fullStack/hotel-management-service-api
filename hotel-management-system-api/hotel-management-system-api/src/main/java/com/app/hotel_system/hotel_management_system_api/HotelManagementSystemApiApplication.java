@@ -1,13 +1,13 @@
-package com.app.hotel_system.hotel_management_service_api;
+package com.app.hotel_system.hotel_management_system_api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HotelManagementServiceApiApplication {
+public class HotelManagementSystemApiApplication {
 
 	public static void main(String[] args) {
-		args.run(HotelManagementServiceApiApplication.class, args);
+		SpringApplication.run(HotelManagementSystemApiApplication.class, args);
 	}
 
 }
