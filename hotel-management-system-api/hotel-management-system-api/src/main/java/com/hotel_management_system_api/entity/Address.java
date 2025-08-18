@@ -11,10 +11,6 @@ import java.math.BigDecimal;
 @Table(name="address")
 public class Address {
 
-    @Id
-    @Column(name="address_id", length=50)
-    private String addressId;
-
     @Column(name="address_line", nullable=false, length=80)
     private String addressLine;
 
