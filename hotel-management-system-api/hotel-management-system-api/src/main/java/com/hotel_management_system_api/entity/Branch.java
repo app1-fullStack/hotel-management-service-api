@@ -1,10 +1,7 @@
 package com.hotel_management_system_api.entity;
 
 import com.hotel_management_system_api.enums.BranchType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="branch")
@@ -15,10 +12,11 @@ public class Branch {
 
     private int roomCount;
 
+    @Enumerated(EnumType.STRING)
     @Column(name="branch_type", nullable=false)
     private BranchType branchType ;
 
     @Column(name="branch_name", nullable=false)
-    private BranchType branchNmae;
+    private String branchNmae;
 
 }
