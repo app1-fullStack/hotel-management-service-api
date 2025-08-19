@@ -2,7 +2,6 @@ package com.hotel_management_system_api.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Lob;
 
 @Embeddable
