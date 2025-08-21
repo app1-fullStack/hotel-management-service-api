@@ -1,18 +1,23 @@
-package com.hotel_management_system_api.dto.request;
+package com.hotel_management_system_api.dto.response;
 
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RequestRoomDto {
+public class ResponseRoomDto {
+    private String roomId;
     private int bedCount;
     private boolean isAvailable;
     private BigDecimal price;
     private String roomNumber;
     private String roomType;
     private String branchId;
+
+    private List<ResponseFacilityDto> facilities;
+    private List<ResponseRoomImageDto> images;
 }

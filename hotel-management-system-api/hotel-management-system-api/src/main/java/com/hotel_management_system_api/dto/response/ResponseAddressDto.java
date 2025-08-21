@@ -1,4 +1,4 @@
-package com.hotel_management_system_api.dto.request;
+package com.hotel_management_system_api.dto.response;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RequestAddressDto {
+public class ResponseAddressDto {
     private String addressLine;
     private String city;
     private String country;
