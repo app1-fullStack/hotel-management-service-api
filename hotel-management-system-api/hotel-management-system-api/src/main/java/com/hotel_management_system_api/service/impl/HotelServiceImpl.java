@@ -6,9 +6,13 @@ import com.hotel_management_system_api.dto.response.paginate.HotelPaginateRespon
 import com.hotel_management_system_api.entity.Hotel;
 import com.hotel_management_system_api.repo.HotelRepo;
 import com.hotel_management_system_api.service.HotelService;
+import jakarta.persistence.Entity;
 import lombok.*;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
+@Entity
 @Service
 @RequiredArgsConstructor
 @Builder
@@ -20,7 +24,6 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public void create(RequestHotelDto dto) {
 
-        private final HotelRepo hotelRepo;
     }
 
     @Override
@@ -44,7 +47,12 @@ public class HotelServiceImpl implements HotelService {
 
         private Hotel toHotel(RequestHotelDto dto) {
             return dto==null?null:
-                    Hotel
+                    Hotel.builder()
+                            .hotelName(dto.getHotelName())
+                            .hotelId(UUID.randomUUID().toString())
+                            .starRating(dto.getStarRating())
+
+                            .build()
         }
     }
 }
