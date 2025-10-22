@@ -12,15 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-@Entity
 @Service
 @RequiredArgsConstructor
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
 public class HotelServiceImpl implements HotelService {
+    
+    private final HotelRepo hotelRepo;
     @Override
     public void create(RequestHotelDto dto) {
 
@@ -45,14 +41,16 @@ public class HotelServiceImpl implements HotelService {
     public HotelPaginateResponseDto findAll(int page, int size, String searchText) {
         return null;
 
-        private Hotel toHotel(RequestHotelDto dto) {
-            return dto==null?null:
-                    Hotel.builder()
-                            .hotelName(dto.getHotelName())
-                            .hotelId(UUID.randomUUID().toString())
-                            .starRating(dto.getStarRating())
-
-                            .build()
-        }
+    @Override
+    public HotelPaginateResponseDto findAll(int page, int size, String searchText) {
+        return null;
     }
-}
+
+    private Hotel toHotel(RequestHotelDto dto) {
+        return dto==null?null:
+                Hotel.builder()
+                        .hotelName(dto.getHotelName())
+                        .hotelId(UUID.randomUUID().toString())
+                        .starRating(dto.getStarRating())
+                        .build();
+    }

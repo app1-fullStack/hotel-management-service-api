@@ -8,15 +8,15 @@ import jakarta.persistence.Lob;
 public class FileFormatter {
 
     @Lob
-    @Column(name="")
+    @Column(name="file_name")
     private byte[] fileName;
 
-    @Column(name="")
+    @Column(name="resource_url")
     private byte[] resourceUrl;
 
-    @Column(name="")
+    @Column(name="directory")
     private byte[] directory;
 
-    @Column(name="")
+    @Column(name="hash")
     private byte[] hash ;
 }
