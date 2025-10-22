@@ -3,7 +3,7 @@ package com.hotel_management_system_api.api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+//http://localhost:9091/hotel-management/api/v1/test/check
 @RestController
 @RequestMapping("/hotel-management/api/v1/test")
 public class TestController {
