@@ -1,9 +1,15 @@
 package com.hotel_management_system_api.dto.response.paginate;
 
 import com.hotel_management_system_api.dto.response.ResponseRoomDto;
+import lombok.*;
 
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class RoomPaginateResponseDto {
     private List<ResponseRoomDto> dataList;
     private long dataCount;
