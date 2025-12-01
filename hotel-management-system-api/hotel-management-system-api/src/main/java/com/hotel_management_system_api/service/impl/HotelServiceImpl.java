@@ -11,7 +11,6 @@ import com.hotel_management_system_api.entity.Room;
 import com.hotel_management_system_api.repo.HotelRepo;
 import com.hotel_management_system_api.service.HotelService;
 import com.hotel_management_system_api.util.ByteCodeHandler;
-import com.hotel_management_system_api.util.ByteCodeHandlerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -69,8 +68,8 @@ public class HotelServiceImpl implements HotelService {
     }
 
     private ResponseHotelDto toResponseHotelDto(Hotel hotel) throws SQLException {
-        return hotel == null?null:
-                Hotel.builder()
+        return hotel == null ? null :
+                ResponseHotelDto.builder()
                         .hotelId(hotel.getHotelId())
                         .hotelName(hotel.getHotelName())
                         .activeStatus(hotel.isActiveStatus())
@@ -81,7 +80,7 @@ public class HotelServiceImpl implements HotelService {
                         .branches(
                                 hotel.getBranches().stream().map(e-> {
                                     try {
-                                        toResponseBranchDto(e);
+                                        return toResponseBranchDto(e);
                                     } catch (SQLException ex) {
                                         throw new RuntimeException(ex);
                                     }
@@ -90,7 +89,7 @@ public class HotelServiceImpl implements HotelService {
                         .build();
     }
     private ResponseBranchDto toResponseBranchDto(Branch branch) throws SQLException {
-        return ResponseBranchDto == null?null:
+        return branch == null?null:
                Branch.builder()
                         .branchId(branch.getBranchId())
                        .branchName(branch.getBranchName())
