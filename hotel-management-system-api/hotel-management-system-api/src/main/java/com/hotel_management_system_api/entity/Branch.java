@@ -2,11 +2,17 @@ package com.hotel_management_system_api.entity;
 
 import com.hotel_management_system_api.enums.BranchType;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name="branch")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Branch {
     @Id
     @Column(name="branch_id")
@@ -19,7 +25,7 @@ public class Branch {
     private BranchType branchType ;
 
     @Column(name="branch_name", nullable=false)
-    private String branchNmae;
+    private String branchName;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="hotel_id")
