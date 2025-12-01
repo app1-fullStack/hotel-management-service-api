@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 
@@ -56,6 +57,24 @@ public class HotelServiceImpl implements HotelService {
                         .hotelId(UUID.randomUUID().toString())
                         .starRating(dto.getStarRating())
                         .description(byteCodeHandler.stringToBlob(dto.getDescription()))
+                        .createdAt(LocalDateTime.now())
+                        .updatedAt(LocalDateTime.now())
+                        .activeStatus(true)
+                        .startingFrom(dto.getStartingFrom())
+                        .build();
+    }
+
+    private ResponseHotelDto toResponseHotelDto(Hotel hotel) throws SQLException {
+        return hotel == null?null:
+                Hotel.builder()
+                        .hotelId(hotel.getHotelId())
+                        .hotelName(hotel.getHotelName())
+                        .activeStatus(hotel.isActiveStatus())
+                        .startingFrom(hotel.getStartingFrom())
+                        .updatedAt(LocalDateTime.now())
+                        .createdAt(LocalDateTime.now())
+                        .description(hotel.getDescription())
+                        .branches()
                         .build();
     }
 }
