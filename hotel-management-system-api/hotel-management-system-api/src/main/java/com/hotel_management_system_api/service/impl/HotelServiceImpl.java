@@ -3,17 +3,15 @@ package com.hotel_management_system_api.service.impl;
 import com.hotel_management_system_api.dto.request.RequestHotelDto;
 import com.hotel_management_system_api.dto.response.ResponseBranchDto;
 import com.hotel_management_system_api.dto.response.ResponseHotelDto;
-import com.hotel_management_system_api.dto.response.ResponseRoomDto;
 import com.hotel_management_system_api.dto.response.paginate.HotelPaginateResponseDto;
 import com.hotel_management_system_api.entity.Branch;
 import com.hotel_management_system_api.entity.Hotel;
-import com.hotel_management_system_api.entity.Room;
 import com.hotel_management_system_api.exceptions.EntryNotFoundException;
 import com.hotel_management_system_api.repo.HotelRepo;
 import com.hotel_management_system_api.service.HotelService;
 import com.hotel_management_system_api.util.ByteCodeHandler;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -65,6 +63,7 @@ public class HotelServiceImpl implements HotelService {
                 .dataCount(hotelRepo.countAllHotels(searchText))
                 .dataList(
                         hotelRepo.searchAllHotels(searchText, PageRequest.of(page, size))
+                                .getContent()
                                 .stream().map(e-> {
                                     try {
                                         return toResponseHotelDto(e);
@@ -96,10 +95,10 @@ public class HotelServiceImpl implements HotelService {
                 ResponseHotelDto.builder()
                         .hotelId(hotel.getHotelId())
                         .hotelName(hotel.getHotelName())
-                        .activeStatus(hotel.isActiveStatus())
+                        .isAvailable(hotel.isActiveStatus())
                         .startingFrom(hotel.getStartingFrom())
-                        .updatedAt(LocalDateTime.now())
-                        .createdAt(LocalDateTime.now())
+                        .updatedDate(LocalDateTime.now())
+                        .createdDate(LocalDateTime.now())
                         .description(byteCodeHandler.blobToString(hotel.getDescription()))
                         .branches(
                                 hotel.getBranches().stream().map(e-> {
@@ -119,7 +118,7 @@ public class HotelServiceImpl implements HotelService {
                         .branchId(branch.getBranchId())
                         .branchName(branch.getBranchName())
                         .roomCount(branch.getRoomCount())
-                        .branchType(branch.getBranchType())
+                        .branchType(String.valueOf(branch.getBranchType()))
                         .build();
     }
 
