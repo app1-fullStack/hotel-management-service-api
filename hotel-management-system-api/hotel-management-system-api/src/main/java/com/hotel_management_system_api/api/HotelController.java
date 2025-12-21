@@ -5,10 +5,7 @@ import com.hotel_management_system_api.service.HotelService;
 import com.hotel_management_system_api.util.StandardResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 
@@ -27,6 +24,17 @@ public class HotelController {
         return new ResponseEntity<> (
                 new StandardResponseDto(201,
                         "Hotel created successfully",
+                        null),HttpStatus.CREATED);
+    }
+
+    @PutMapping("/admin/update/{id}")
+    public ResponseEntity<StandardResponseDto> update(
+            @PathVariable("id") String hotelId,
+            @RequestBody RequestHotelDto dto) throws SQLException {
+        hotelService.update(dto, hotelId);
+        return new ResponseEntity<> (
+                new StandardResponseDto(201,
+                        "Hotel Updated successfully",
                         null),HttpStatus.CREATED);
     }
 }
