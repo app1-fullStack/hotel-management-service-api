@@ -53,7 +53,18 @@ public class HotelController {
             @PathVariable("id") String hotelId) throws SQLException {
         return new ResponseEntity<> (
                 new StandardResponseDto(200,
-                        "Hotel found successfully",
-                        null),HttpStatus.OK);
+                        "Hotel found successfully",hotelService.findById(hotelId))
+                ,HttpStatus.OK);
+    }
+
+    @GetMapping("/visitor/find-all")
+    public ResponseEntity<StandardResponseDto> findAll(
+            @RequestParam String searchText,
+            @RequestParam int page,
+            @RequestParam int size) throws SQLException {
+        return new ResponseEntity<> (
+                new StandardResponseDto(200,
+                        "Hotels list",hotelService.findAll(page, size, searchText))
+                ,HttpStatus.OK);
     }
 }
