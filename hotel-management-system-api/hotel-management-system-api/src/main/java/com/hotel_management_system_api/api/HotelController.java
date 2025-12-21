@@ -37,4 +37,23 @@ public class HotelController {
                         "Hotel Updated successfully",
                         null),HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/host/delete/{id}")
+    public ResponseEntity<StandardResponseDto> delete(
+            @PathVariable("id") String hotelId) throws SQLException {
+        hotelService.delete(hotelId);
+        return new ResponseEntity<> (
+                new StandardResponseDto(204,
+                        "Hotel Deleted successfully",
+                        null),HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/visitor/find-by-id/{id}")
+    public ResponseEntity<StandardResponseDto> findById(
+            @PathVariable("id") String hotelId) throws SQLException {
+        return new ResponseEntity<> (
+                new StandardResponseDto(200,
+                        "Hotel found successfully",
+                        null),HttpStatus.OK);
+    }
 }
